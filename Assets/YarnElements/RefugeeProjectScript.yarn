@@ -1,0 +1,173 @@
+﻿title: InterrogationStart
+tags:
+---
+
+<<declare $usedFakePassport = false>>
+<<declare $knowsSmuggler = false>>
+<<declare $militantSuspicion = false>>
+
+Officer: State your full name and country of origin. #line:07fef50 
+
+-> My name is Ameen Rahman. I'm from Al-Haran. #line:0442c3a 
+    <<jump EntryMethod>>
+===
+
+title: EntryMethod
+tags:
+---
+
+Officer: How did you enter the country? #line:0cce695 
+
+-> I crossed the river at night. #line:020fc5c 
+    <<jump EntryRiver>>
+-> I had help from someone. #line:0d7e70f 
+    <<set $knowsSmuggler = true>>
+    <<jump EntryHelp>>
+-> I used a borrowed passport. #line:0ab472d 
+    <<set $usedFakePassport = true>>
+    <<jump EntryPassport>>
+===
+
+title: EntryRiver
+tags:
+---
+
+Officer: Thats not a legal point of entry. Were you aware of that? #line:0e52860 
+
+-> I had no choice. #line:0b5c39c 
+    <<jump FledReason>>
+
+-> Yes, but it was the only way. #line:0f22d68 
+    <<jump FledReason>>
+
+===
+
+title: EntryHelp
+tags:
+---
+
+Officer: Who helped you cross? #line:0dd0d46 
+
+-> A man I met at the border. #line:0a54896 
+    <<jump FledReason>>
+
+-> I dont know his name. #line:06667e2 
+    <<jump FledReason>>
+
+-> I paid someone who promised me safety. #line:0020854 
+    <<jump FledReason>>
+
+===
+
+title: EntryPassport
+tags:
+---
+
+Officer: Do you understand that using false identification is a criminal offense? #line:0fd3ad2 
+
+-> I had to do what I could to survive. #line:03481bd 
+    <<jump FledReason>>
+
+-> I didnt know it was illegal. #line:08acdaf 
+    <<jump FledReason>>
+
+-> Please… I had no other way. #line:0275784 
+    <<jump FledReason>>
+
+===
+
+title: FledReason
+tags:
+---
+
+Officer: You claim you were fleeing violence. Can you tell me exactly what happened the night you left? #line:0476956 
+
+-> My brother was taken. I ran before they came for me. #line:04d43d2 
+    <<jump SmugglerQuestion>>
+
+-> There were gunshots. I hid with my sister. #line:0261cf4 
+    <<jump SmugglerQuestion>>
+
+-> I dont want to talk about it. #line:0343afc 
+    <<jump SmugglerQuestion>>
+
+===
+
+title: SmugglerQuestion
+tags:
+---
+
+<<if $usedFakePassport == true>>
+
+Officer: Did you know the man who gave you the passport? #line:0dda16d 
+
+-> Yes. He said it would get me here safely. #line:085c552 
+    <<set $knowsSmuggler = true>>
+    <<jump ExtremistCheck>>
+
+-> No. Someone handed it to me as I boarded the truck. #line:0781314 
+    <<jump ExtremistCheck>>
+
+-> I don't remember. #line:0fc40dd 
+    <<jump ExtremistCheck>>
+
+<<else>>
+
+Officer: Did anyone give you anything to help you travel? #line:075058e 
+
+-> Just advice. No documents. #line:0c1d36b 
+    <<jump ExtremistCheck>>
+
+-> A number to call, but I never used it. #line:04e3e21 
+    <<jump ExtremistCheck>>
+
+<<endif>>
+
+===
+
+title: ExtremistCheck
+tags:
+---
+
+Officer: Have you ever been involved with any militant or extremist groups — even indirectly? #line:01026a8 
+
+-> No. Never. #line:0d904e9 
+    <<jump FinalQuestion>>
+
+-> People in my town were forced, but I wasnt. #line:08ff2b6 
+    <<set $militantSuspicion = true>>
+    <<jump FinalQuestion>>
+
+-> I dont want to answer that. #line:0bc426a 
+    <<jump FinalQuestion>>
+
+===
+
+title: FinalQuestion
+tags:
+---
+
+Officer: Why should we believe you? You have no valid documents, no proof of what you say happened, and you're not the only one claiming to be a victim. #line:0b3ecee 
+
+-> Because everything Ive told you is the truth. #line:0338e23 
+    <<jump InterrogationEnd>>
+
+-> I dont expect you to believe me… I just want a chance. #line:0d443fd 
+    <<jump InterrogationEnd>>
+
+-> You dont know what its like to lose everything. #line:0d03752 
+    <<jump InterrogationEnd>>
+
+===
+
+title: InterrogationEnd
+tags:
+---
+
+Officer: We will review your case. You will remain here until further notice. #line:023cd1a 
+
+// <<fadeOutAudio>>
+// <<triggerHaptics>>
+// <<logToAirtable>>
+
+===
