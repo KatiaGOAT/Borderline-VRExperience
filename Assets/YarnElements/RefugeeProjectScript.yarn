@@ -1,4 +1,11 @@
-﻿title: InterrogationStart
+﻿title: IntroSequence
+tags:
+---
+
+<<startIntro>>  //command to start the monologue
+===
+
+title: InterrogationStart
 tags:
 ---
 
