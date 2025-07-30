@@ -2,7 +2,8 @@
 tags:
 ---
 
-<<startIntro>>  //command to start the monologue
+<<startIntro YarnCommandsHolder>>  //command to start the monologue
+
 ===
 
 title: InterrogationStart
@@ -38,6 +39,7 @@ Officer: How did you enter the country? #line:OfficerQ2
 title: EntryRiver
 tags:
 ---
+<<fast_heartbeat YarnCommandsHolder>> //command to trigger fast heartbeats
 
 Officer: Thats not a legal point of entry. Were you aware of that? #line:OfficerQ3 
 
@@ -52,6 +54,7 @@ Officer: Thats not a legal point of entry. Were you aware of that? #line:Officer
 title: EntryHelp
 tags:
 ---
+<<fast_heartbeat YarnCommandsHolder>> //command to trigger fast heartbeats
 
 Officer: Who helped you cross? #line:OfficerQ4 
 
@@ -71,6 +74,8 @@ tags:
 ---
 
 Officer: Do you understand that using false identification is a criminal offense? #line:OfficerQ5 
+
+<<fast_heartbeat YarnCommandsHolder>> //command to trigger fast heartbeats
 
 -> I had to do what I could to survive. #line:03481bd 
     <<jump FledReason>>
@@ -171,10 +176,10 @@ title: InterrogationEnd
 tags:
 ---
 
+<<normal_heartbeat YarnCommandsHolder>>
+
 Officer: We will review your case. You will remain here until further notice. #line:OfficerQ11 
 
-// <<fadeOutAudio>>
-// <<triggerHaptics>>
-// <<logToAirtable>>
+<<transitionToFeedback YarnCommandsHolder>>  //command to enable ui to take the user to next scene
 
 ===

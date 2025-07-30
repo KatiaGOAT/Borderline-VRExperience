@@ -10,6 +10,12 @@ public class bHapticsCommands : MonoBehaviour
     private float loopLength;
 
 
+    private void Start()
+    {
+        SetLoopLength(1.0f); // Default loop length of 1 second
+        PlayHapticLoop("normal_heartbeat");
+    }
+
 
     public void PlayHaptic(string haptic)
     {
@@ -21,6 +27,15 @@ public class bHapticsCommands : MonoBehaviour
         loopLength = _loopLength;
     }
 
+    public void FastLoop()
+    {
+        loopLength = 0.5f; // Set loop length to 0.5 seconds for fast loop  
+    }
+
+    public void NormalLoop()
+    {
+        loopLength = 1f; // Set loop length to 0.5 seconds for fast loop  
+    }
 
     public void PlayHapticLoop(string hapticLoop)
     {        

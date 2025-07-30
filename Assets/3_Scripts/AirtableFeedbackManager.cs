@@ -4,10 +4,11 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System;
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 public class AirtableFeedbackManager : MonoBehaviour
 {
     [Header("UI Elements")]
-    public InputField playerNameInput;          // Input field for player name
+
     public Slider emotionalImpactSlider;        // Slider for emotional impact rating
     public Slider realismSlider;                // Slider for realism rating
     public Slider empathySlider;                // Slider for empathy rating
@@ -29,9 +30,7 @@ public class AirtableFeedbackManager : MonoBehaviour
     // Called when the user presses the Submit button
     public void SubmitFeedback()
     {
-        // Retrieve player name from input field
-        string playerName = playerNameInput.text;
-
+        
         // Retrieve slider values and round to nearest integer
         int emotionalImpact = Mathf.RoundToInt(emotionalImpactSlider.value);
         int realism = Mathf.RoundToInt(realismSlider.value);
@@ -56,27 +55,28 @@ public class AirtableFeedbackManager : MonoBehaviour
 
 
         // Start coroutine to send feedback to Airtable
-        StartCoroutine(SendToAirtable(playerName, emotionalImpact, realism, empathy, immersion, overallScore, timestamp));
+        StartCoroutine(SendToAirtable(emotionalImpact, realism, empathy, immersion, overallScore, timestamp));
     }
 
+
+
+
     // Coroutine to send feedback data to Airtable via a POST request
-    IEnumerator SendToAirtable(string name, int emotionalImpact, int realism, int empathy, int immersion, int overallScore, string timestamp)
+    IEnumerator SendToAirtable(int emotionalImpact, int realism, int empathy, int immersion, int overallScore, string timestamp)
     {
         // Build the Airtable API endpoint URL
-        string airtableURL = $"https://api.airtable.com/v0/{baseID}/{tableName}";
+        string airtableURL = "https://api.airtable.com/v0/" + "appNb84dkFYiAs08r" + "/" + "BorderLine " ;
 
         // Create JSON data 
-        string jsonPayload = $@"{{
-            ""fields"": {{
-                ""PlayerName"": ""{name}"",
-                ""EmotionalImpact"": {emotionalImpact},
-                ""Realism"": {realism},
-                ""Empathy"": {empathy},
-                ""Immersion"": {immersion},
-                ""OverallScore"": {overallScore},
-                ""SubmissionTime"": ""{timestamp}""
-            }}
-        }}";
+        string jsonPayload =
+                "{\"fields\": {" +
+                "\"SubmissionTime\":\"" + timestamp + "\", " +
+                "\"EmotionalImpact\":\"" +  emotionalImpact + "\", " +
+                "\"Realism\":\"" + realism + "\", " + 
+                "\"Empathy\":\"" + empathy + "\", " +
+                "\"Immersion\":\"" + immersion + "\", " +
+                "\"OverallScore\":\"" + overallScore + "\"" +
+                "}}";
 
         // Create a new UnityWebRequest for POST
         UnityWebRequest www = new UnityWebRequest(airtableURL, "POST");
