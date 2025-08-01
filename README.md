@@ -23,6 +23,18 @@
 - **Airtable API** – Remote data collection
 
 ---
+## 📷 Screenshots
+
+
+
+---
+
+## 👨‍💻 Authors & Credits
+
+**Developed by:** Katia Xenaki  
+**University Project for:** MSc Virtual Reality, Swansea University  
+**Mentor:** Seb Vowles
+
 
 
 
