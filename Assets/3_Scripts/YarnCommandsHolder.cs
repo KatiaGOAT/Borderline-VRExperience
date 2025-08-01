@@ -38,7 +38,7 @@ public class YarnCommandsHolder : MonoBehaviour
         if (monologueAudio != null)
             monologueAudio.Play();
 
-        yield return new WaitForSeconds(50f); // Wait during monologue
+        yield return new WaitForSeconds(60f); // Wait during monologue
 
         //activate the officer npc
         if (officerNPC != null)
