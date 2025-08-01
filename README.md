@@ -6,11 +6,11 @@
 
 ## 🎮 Features
 
-🔹 **Immersive First-Person Perspective** – Users inhabit the role of a refugee in a detention setting.
-🔹 **Branching Dialogue** – Dynamic interrogation sequences using Yarn Spinner.
-🔹 **Haptic Feedback** – Real-time heartbeat simulation via bHaptics vest.
-🔹 **Data Logging** – Collects user responses and interaction data to Airtable for analysis.
-🔹 **Atmospheric Audio** – Spatial sound design enhances tension and realism.
+- **Immersive First-Person Perspective** – Users inhabit the role of a refugee in a detention setting.
+- **Branching Dialogue** – Dynamic interrogation sequences using Yarn Spinner.
+- **Haptic Feedback** – Real-time heartbeat simulation via bHaptics vest.
+- **Data Logging** – Collects user responses and interaction data to Airtable for analysis.
+- **Atmospheric Audio** – Spatial sound design enhances tension and realism.
 
 ---
 
